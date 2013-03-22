@@ -1,0 +1,51 @@
+body {
+	background-color: white;
+	color: #333333;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	margin: 0;
+	padding: 0 1em 2em 2em;
+}
+
+h1, h2, h3 {
+	
+	text-transform: capitalize;
+	color: #212121;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: #d5d5d5;
+}
+
+thead tr {
+	border-bottom: 2px solid gray;
+	background-color: #5e5e5e;
+	color: silver;
+}
+
+table {
+	border: 1px solid #c0c0c0;
+	border-collapse: collapse;
+	width: 768px;
+}
+
+td {
+	padding: 5px 5px 5px 10px;
+	border: 1px solid silver;
+}
+
+thead td:nth-child(2) {
+	width: 75%;
+}
+
+.good {
+	color: #008f51;
+	text-shadow: green 0 0 1px;
+}
+.bad {
+	color: #ff2600;
+	text-shadow: red 0 0 1px;
+}
+.warn {
+	color: #ff9300;
+	text-shadow: orange 0 0 1px;
+}
