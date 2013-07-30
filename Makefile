@@ -17,7 +17,7 @@ rebuild: clean parse generate index jsdeps
 test:
 	@echo "==> Starting test server"
 	(cd www && python -m "SimpleHTTPServer" &)
-	open "http://127.0.0.1:8000"
+	firefox "http://127.0.0.1:8000"
 
 stop:
 	# This stops the test server. So nasty.
@@ -28,11 +28,11 @@ clean:
 	rm -f lib/*.pyc libexec/*.pyc data/run*/*_cache.py*
 	rm -rf data/run*/channel_data
 
-jsdeps: lib/pca_constants.json data/index.json
+jsdeps: lib/eca_constants.json data/index.json
 
-lib/pca_constants.json: lib/pca_constants.py
-	@echo "==> Generating pca_constants.json"
-	libexec/generate_constants_json.py > lib/pca_constants.json
+lib/eca_constants.json: lib/eca_constants.py
+	@echo "==> Generating eca_constants.json"
+	libexec/generate_constants_json.py > lib/eca_constants.json
 
 data/index.json: data/run*
 	@echo "==> Generating index.json"
@@ -43,26 +43,11 @@ parse:
 		echo "==> Parsing .ratdb files in $${RUN}"; \
 		OUTPUT_DIR="$${RUN}/channel_data"; \
 		mkdir "$${OUTPUT_DIR}"; \
-		echo "====> General "; \
-		if [ -e $${RUN}/PCA_log_*.ratdb ]; then \
+		echo "====> currently PDST only "; \
+		if [ -e $${RUN}/PDST_*.ratdb ]; then \
 			/usr/bin/time $(PYPY) libexec/parse_ratdb.py \
-				--pythonsrc "$${RUN}/general_cache.py" \
-				--generalpath "$${OUTPUT_DIR}/general_summary.txt" \
-				$${RUN}/PCA_log_*.ratdb; \
-		fi; \
-		echo "====> Gain Fit"; \
-		if [ -e $${RUN}/PCAGF_*.ratdb ]; then \
-		/usr/bin/time $(PYPY) libexec/parse_ratdb.py \
-			--pythonsrc "$${RUN}/gainfit_cache.py" \
-			--gainfitpath "$${OUTPUT_DIR}/gainfit_summary.txt" \
-			$${RUN}/PCAGF_*.ratdb; \
-		fi; \
-		echo "====> Time Walk"; \
-		if [ -e $${RUN}/PCATW_*.ratdb ]; then \
-		/usr/bin/time $(PYPY) libexec/parse_ratdb.py \
-			--pythonsrc "$${RUN}/timewalk_cache.py" \
-			--timewalkpath "$${OUTPUT_DIR}/timewalk_summary.txt" \
-			$${RUN}/PCATW_*.ratdb; \
+				--pythonsrc "$${RUN}/pdst_cache.py" \
+				$${RUN}/PDST_*.ratdb; \
 		fi; \
 	done
 
@@ -70,17 +55,17 @@ index:
 	@for RUN in data/run*; do \
 		echo "==> Generating .json files in $${RUN}"; \
 		OUTPUT_DIR="$${RUN}/channel_data"; \
-		echo "====> Gain Fit"; \
-		if [ -e $${RUN}/gainfit_cache.py ]; then \
+		echo "====> PDST"; \
+		if [ -e $${RUN}/pdst_cache.py ]; then \
 		/usr/bin/time libexec/generate_flag_index_json.py \
-			--gainfit "$${RUN}/gainfit_cache.py" \
-			>$${OUTPUT_DIR}/gf_flag_index.json; \
+			--pdst "$${RUN}/pdst_cache.py" \
+			>$${OUTPUT_DIR}/pdst_flag_index.json; \
 		fi; \
-		echo "====> Time Walk"; \
-		if [ -e $${RUN}/timewalk_cache.py ]; then \
+		echo "====> TSLP"; \
+		if [ -e $${RUN}/tslp_cache.py ]; then \
 		/usr/bin/time libexec/generate_flag_index_json.py \
-			--timewalk "$${RUN}/timewalk_cache.py" \
-			>$${OUTPUT_DIR}/tw_flag_index.json; \
+			--tslp "$${RUN}/tslp_cache.py" \
+			>$${OUTPUT_DIR}/tslp_flag_index.json; \
 		fi; \
 	done
 
@@ -90,17 +75,17 @@ generate:
 	@for RUN in data/run*; do \
 		echo "==> Generating channel flag status images for $${RUN}"; \
 		OUTPUT_DIR="$${RUN}/channel_data"; \
-		echo "====> Gain Fit "; \
-		if [ -e $${RUN}/gainfit_cache.py ]; then \
+		echo "====> PDST "; \
+		if [ -e $${RUN}/pdst_cache.py ]; then \
 			/usr/bin/time libexec/generate_images.py \
-				--gainfit "$${RUN}/gainfit_cache.py" \
+				--pdst "$${RUN}/pdst_cache.py" \
 				--directory "$${OUTPUT_DIR}" \
 				--scale=2; \
 		fi; \
-		echo "====> Time Walk "; \
-		if [ -e $${RUN}/timewalk_cache.py ]; then \
+		echo "====> TSLP "; \
+		if [ -e $${RUN}/tslp_cache.py ]; then \
 			/usr/bin/time libexec/generate_images.py \
-				--timewalk "$${RUN}/timewalk_cache.py" \
+				--tslp "$${RUN}/tslp_cache.py" \
 				--directory "$${OUTPUT_DIR}" \
 				--scale=2; \
 		fi; \

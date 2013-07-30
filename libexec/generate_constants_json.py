@@ -3,11 +3,11 @@
 import json
 import imp
 
-pca = imp.load_source('*', 'lib/pca_constants.py')
+eca = imp.load_source('*', 'lib/eca_constants.py')
 
-pca_items = {}
-for k,v in pca.__dict__.items():
+eca_items = {}
+for k,v in eca.__dict__.items():
     if k[0] is not "_":
-        pca_items[k] = v
+        eca_items[k] = v
 
-print json.dumps(pca_items, indent=4)
+print json.dumps(eca_items, indent=4)

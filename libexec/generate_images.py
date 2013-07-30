@@ -8,7 +8,7 @@ import sys
 import math
 import imp
 
-pca = imp.load_source('*', 'lib/pca_constants.py')
+eca = imp.load_source('*', 'lib/eca_constants.py')
 
 def color_add(c1, c2):
     #return tuple([min(c1[x] + c2[x], 255) for x in range(0, len(c1))])
@@ -43,7 +43,7 @@ def process_statuses(statuses, flags, colors, target_flag=None):
                 pixels.append((255, 255, 255))
             else:
                 pixel_components = [colors[flags[bit]['type']]
-                                    for bit in xrange(1, 31)
+                                    for bit in xrange(1, 31) #channel bits are 2nd half of status word
                                     if status & 2**bit]
                 pixels.append(reduce(color_add, pixel_components))
     else:
@@ -96,22 +96,22 @@ if __name__ == '__main__':
     # argp.add_argument('-j', '--json', action='store_true',
     #     help='generate json files in addition to images')
     mode_group = argp.add_mutually_exclusive_group(required=True)
-    mode_group.add_argument('-w', '--timewalk',
-                            help='use the time walk channel data')
-    mode_group.add_argument('-f', '--gainfit',
-                            help='use the gain fit channel data')
+    mode_group.add_argument('-w', '--tslp',
+                            help='use the tslope data')
+    mode_group.add_argument('-f', '--pdst',
+                            help='use the pedestal data')
 
 
     args = argp.parse_args()
 
-    if args.timewalk:
-        rat = imp.load_source('__main__', args.timewalk)
-        statuses = rat.data['PCATW_status']
-        mode = 'tw'
-    elif args.gainfit:
-        rat = imp.load_source('__main__', args.gainfit)
-        statuses = rat.data['PCAGF_status']
-        mode = 'gf'
+    if args.tslp:
+        rat = imp.load_source('__main__', args.tslp)
+        statuses = rat.data['tslp_status']
+        mode = 'tslp'
+    elif args.pdst:
+        rat = imp.load_source('__main__', args.pdst)
+        statuses = rat.data['pdst_status']
+        mode = 'pdst'
     else:
         raise ValueError("Unknown mode of operation")
 
@@ -120,13 +120,13 @@ if __name__ == '__main__':
         os.chdir(args.directory)
 
     # Summary Image
-    generate_image(process_statuses(statuses, pca.flags[mode], pca.colors),
+    generate_image(process_statuses(statuses, eca.flags[mode], eca.colors),
                    filename="{}-allflags.bmp".format(mode),
                    scale=args.scale)
 
     # Flag-specific images
-    for bit, flag in enumerate(pca.flags[mode]):
-        pixels = process_statuses(statuses, pca.flags[mode], pca.colors,
+    for bit, flag in enumerate(eca.flags[mode]):
+        pixels = process_statuses(statuses, eca.flags[mode], eca.colors,
                                   target_flag=flag)
         generate_image(pixels,
                        filename="{}-flag-{:02d}.bmp".format(mode, bit),
