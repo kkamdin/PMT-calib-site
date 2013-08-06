@@ -1,0 +1,420 @@
+{
+    "status_word_count": 9728, 
+    "colors": {
+        "info": [
+            0, 
+            0, 
+            0
+        ], 
+        "fail": [
+            255, 
+            0, 
+            0
+        ], 
+        "warn3": [
+            0, 
+            0, 
+            255
+        ], 
+        "warn2": [
+            64, 
+            0, 
+            128
+        ], 
+        "warn1": [
+            255, 
+            128, 
+            0
+        ]
+    }, 
+    "flags": {
+        "pdst": [
+            {
+                "doc": "OR of bits 1-14", 
+                "bit": 0, 
+                "type": "info", 
+                "name": "cell status PDST"
+            }, 
+            {
+                "doc": "QHS ped outside limits", 
+                "bit": 1, 
+                "type": "info", 
+                "name": "cell QHS status"
+            }, 
+            {
+                "doc": "width > upper limit", 
+                "bit": 2, 
+                "type": "info", 
+                "name": "cell QHS width"
+            }, 
+            {
+                "doc": "differebce from previous run > upper limit", 
+                "bit": 3, 
+                "type": "info", 
+                "name": "cell QHS stable"
+            }, 
+            {
+                "doc": "QHL ped outside limits", 
+                "bit": 4, 
+                "type": "info", 
+                "name": "cell QHL status"
+            }, 
+            {
+                "doc": "width > upper limit", 
+                "bit": 5, 
+                "type": "info", 
+                "name": "cell QHL width"
+            }, 
+            {
+                "doc": "differebce from previous run > upper limit", 
+                "bit": 6, 
+                "type": "info", 
+                "name": "cell QHL stable"
+            }, 
+            {
+                "doc": "QHX ped outside limits", 
+                "bit": 7, 
+                "type": "info", 
+                "name": "cell QLX status"
+            }, 
+            {
+                "doc": "width > upper limit", 
+                "bit": 8, 
+                "type": "info", 
+                "name": "cell QLX width"
+            }, 
+            {
+                "doc": "differebce from previous run > upper limit", 
+                "bit": 9, 
+                "type": "info", 
+                "name": "cell QLX stable"
+            }, 
+            {
+                "doc": "TAC ped outside limits", 
+                "bit": 10, 
+                "type": "info", 
+                "name": "cell TAC status"
+            }, 
+            {
+                "doc": "width > upper limit", 
+                "bit": 11, 
+                "type": "info", 
+                "name": "cell TAC width"
+            }, 
+            {
+                "doc": "differebce from previous run > upper limit", 
+                "bit": 12, 
+                "type": "info", 
+                "name": "cell TAC stable"
+            }, 
+            {
+                "doc": "fewer than 10 events on this cell", 
+                "bit": 13, 
+                "type": "info", 
+                "name": "cell insufficent events"
+            }, 
+            {
+                "doc": "0 events on this cell", 
+                "bit": 14, 
+                "type": "fail", 
+                "name": "cell no events"
+            }, 
+            {
+                "doc": "OR of bits 16-27", 
+                "bit": 15, 
+                "type": "info", 
+                "name": "channel status"
+            }, 
+            {
+                "doc": "", 
+                "bit": 16, 
+                "type": "info", 
+                "name": "MB ID check"
+            }, 
+            {
+                "doc": "", 
+                "bit": 17, 
+                "type": "info", 
+                "name": "DB ID check"
+            }, 
+            {
+                "doc": "any QHS values outside tolerance", 
+                "bit": 18, 
+                "type": "info", 
+                "name": "channel QHS status"
+            }, 
+            {
+                "doc": "any QHL values outside tolerance", 
+                "bit": 19, 
+                "type": "info", 
+                "name": "channel QHL status"
+            }, 
+            {
+                "doc": "any QLX values outside tolerance", 
+                "bit": 20, 
+                "type": "info", 
+                "name": "channel QLX status"
+            }, 
+            {
+                "doc": "any TAC values outside tolerance", 
+                "bit": 21, 
+                "type": "info", 
+                "name": "channel TAC status"
+            }, 
+            {
+                "doc": "any ped measures outside tolerance", 
+                "bit": 22, 
+                "type": "info", 
+                "name": "channel ped status"
+            }, 
+            {
+                "doc": "any width measures outside tolerance", 
+                "bit": 23, 
+                "type": "info", 
+                "name": "channel width status"
+            }, 
+            {
+                "doc": "any difference measures outside tolerance", 
+                "bit": 24, 
+                "type": "info", 
+                "name": "channel stability status"
+            }, 
+            {
+                "doc": "", 
+                "bit": 25, 
+                "type": "info", 
+                "name": "sequencer disabled"
+            }, 
+            {
+                "doc": "fewer than 10 events for at least one cell on this channel", 
+                "bit": 26, 
+                "type": "info", 
+                "name": "channel insifficent events"
+            }, 
+            {
+                "doc": "0 events on this channel", 
+                "bit": 27, 
+                "type": "info", 
+                "name": "channel no events"
+            }, 
+            {
+                "doc": "", 
+                "bit": 28, 
+                "type": "info", 
+                "name": "spare"
+            }, 
+            {
+                "doc": "", 
+                "bit": 29, 
+                "type": "info", 
+                "name": "spare"
+            }, 
+            {
+                "doc": "", 
+                "bit": 30, 
+                "type": "info", 
+                "name": "spare"
+            }, 
+            {
+                "doc": "", 
+                "bit": 31, 
+                "type": "info", 
+                "name": "GF spare"
+            }
+        ], 
+        "tslp": [
+            {
+                "doc": "OR of bits 1-12", 
+                "bit": 0, 
+                "type": "info", 
+                "name": "cell status TSLP"
+            }, 
+            {
+                "doc": "0 events on this cell", 
+                "bit": 1, 
+                "type": "fail", 
+                "name": "cell no events"
+            }, 
+            {
+                "doc": "too few good points used in cubic fit", 
+                "bit": 2, 
+                "type": "info", 
+                "name": "cell bad data"
+            }, 
+            {
+                "doc": "too many suspicious points", 
+                "bit": 3, 
+                "type": "info", 
+                "name": "cell weird data"
+            }, 
+            {
+                "doc": "x^3 coeff. outside limits", 
+                "bit": 4, 
+                "type": "info", 
+                "name": "cell x3 status"
+            }, 
+            {
+                "doc": "x^3 coeff. outside range of previous run", 
+                "bit": 5, 
+                "type": "info", 
+                "name": "cell x3 stable"
+            }, 
+            {
+                "doc": "x^2 coeff. outside limits", 
+                "bit": 6, 
+                "type": "info", 
+                "name": "cell x2 status"
+            }, 
+            {
+                "doc": "x^2 coeff. outside range of previous run", 
+                "bit": 7, 
+                "type": "info", 
+                "name": "cell x2 stable"
+            }, 
+            {
+                "doc": "x^3 coeff. outside limits", 
+                "bit": 8, 
+                "type": "info", 
+                "name": "cell x status"
+            }, 
+            {
+                "doc": "x^3 coeff. outside range of previous run", 
+                "bit": 9, 
+                "type": "info", 
+                "name": "cell x stable"
+            }, 
+            {
+                "doc": "Too many points with width outside tolerance", 
+                "bit": 10, 
+                "type": "info", 
+                "name": "cell width status"
+            }, 
+            {
+                "doc": "too many points with too few events", 
+                "bit": 11, 
+                "type": "info", 
+                "name": "cell insufficent events"
+            }, 
+            {
+                "doc": "", 
+                "bit": 12, 
+                "type": "info", 
+                "name": "spare"
+            }, 
+            {
+                "doc": "OR of bits 16-27", 
+                "bit": 13, 
+                "type": "info", 
+                "name": "channel status"
+            }, 
+            {
+                "doc": "0 events on this channel", 
+                "bit": 14, 
+                "type": "fail", 
+                "name": "channel no events"
+            }, 
+            {
+                "doc": "too few good points used in cubic fit", 
+                "bit": 15, 
+                "type": "info", 
+                "name": "channel bad data"
+            }, 
+            {
+                "doc": "too many suspicious points", 
+                "bit": 16, 
+                "type": "info", 
+                "name": "channel weird data"
+            }, 
+            {
+                "doc": "x^3 coeff. outside limits and/or range of previous run", 
+                "bit": 17, 
+                "type": "info", 
+                "name": "channel x3 status"
+            }, 
+            {
+                "doc": "x^2 coeff. outside limits and/or range of previous run", 
+                "bit": 18, 
+                "type": "info", 
+                "name": "channel x2 status"
+            }, 
+            {
+                "doc": "x^3 coeff. outside limits and/or range of previous run", 
+                "bit": 19, 
+                "type": "info", 
+                "name": "channel x status"
+            }, 
+            {
+                "doc": "any fit parameters outside limits", 
+                "bit": 20, 
+                "type": "info", 
+                "name": "channel fit status"
+            }, 
+            {
+                "doc": "any fit parameters outside range of previous run", 
+                "bit": 21, 
+                "type": "info", 
+                "name": "channel fit stable"
+            }, 
+            {
+                "doc": "too many points with width outside tolderance", 
+                "bit": 22, 
+                "type": "info", 
+                "name": "channel width status"
+            }, 
+            {
+                "doc": "too many points with two few events", 
+                "bit": 23, 
+                "type": "info", 
+                "name": "channel insufficient events"
+            }, 
+            {
+                "doc": "", 
+                "bit": 24, 
+                "type": "info", 
+                "name": "MB ID check"
+            }, 
+            {
+                "doc": "", 
+                "bit": 25, 
+                "type": "info", 
+                "name": "DB ID check"
+            }, 
+            {
+                "doc": "", 
+                "bit": 26, 
+                "type": "info", 
+                "name": "sequencer disabled"
+            }, 
+            {
+                "doc": "", 
+                "bit": 27, 
+                "type": "info", 
+                "name": "spare"
+            }, 
+            {
+                "doc": "", 
+                "bit": 28, 
+                "type": "info", 
+                "name": "spare"
+            }, 
+            {
+                "doc": "", 
+                "bit": 29, 
+                "type": "info", 
+                "name": "spare"
+            }, 
+            {
+                "doc": "", 
+                "bit": 30, 
+                "type": "info", 
+                "name": "spare"
+            }, 
+            {
+                "doc": "", 
+                "bit": 31, 
+                "type": "info", 
+                "name": "spare"
+            }
+        ]
+    }
+}
