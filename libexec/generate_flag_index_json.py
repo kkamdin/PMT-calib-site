@@ -25,11 +25,11 @@ if __name__ == '__main__':
     if args.tslp:
         rat = imp.load_source('*', args.tslp)
         statuses = rat.data['tslp_status']
-        mode = 'tw'
+        mode = 'tslp'
     elif args.pdst:
         rat = imp.load_source('*', args.pdst)
         statuses = rat.data['pdst_status']
-        mode = 'gf'
+        mode = 'pdst'
     else:
         raise ValueError("Unknown mode of operation")
 
