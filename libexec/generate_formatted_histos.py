@@ -34,7 +34,7 @@ for key in dirList:
 	#print histo.ClassName(), histo.GetName()
 	c1 = TCanvas()
 	histo.Draw()
-	mystring = args.outputDir + histo.GetName() + ".png"
+	mystring = args.outputDir +"/" + histo.GetName() + ".png"
 	c1.SaveAs(mystring)
 
 
