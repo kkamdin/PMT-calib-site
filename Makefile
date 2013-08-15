@@ -1,5 +1,6 @@
 .PHONY: rebuild clean jsdeps parse index generate
 PYPY = `which pypy`
+
 # This Makefile will use the pypy version of python for ratdb parsing if it can.
 # If so, your copy of pypy will need access to the pyyaml module.
 # As of this writing, I'm still using the regular version of python for image
@@ -17,7 +18,7 @@ rebuild: clean parse generate index jsdeps
 test:
 	@echo "==> Starting test server"
 	(cd www && python -m "SimpleHTTPServer" &)
-	firefox "http://127.0.0.1:8000"
+	open "http://127.0.0.1:8000"
 
 stop:
 	# This stops the test server. So nasty.
@@ -51,15 +52,19 @@ parse:
 		fi; \
 	done
 
-rootToPNG:
+root2png:
 	@for RUN in data/run*; do \
 		echo "==> Formatting ECA histograms $${RUN}"; \
+		if [ -e $${RUN}/formattedPDSThistograms ]; then \
+			rm -rf $${RUN}/formattedPDSThistograms; \
+		fi; \
 		OUTPUT_DIR="$${RUN}/formattedPDSThistograms"; \
 		mkdir "$${OUTPUT_DIR}"; \
 		echo "====> retrieving PDST histograms "; \
-		if [ -e $${RUN}/PDSThists_*.ratdb ]; then \
-			/usr/bin/time $(PYPY) libexec/generate_formatted_histos.py \
-				$${RUN}/PDSThists_*.ratdb; \
+		if [ -e $${RUN}/PDSThists_*.root ]; then \
+			/usr/bin/time python libexec/generate_formatted_histos.py \
+				--file $${RUN}/PDSThists_*.root \
+				--outputDir $${OUTPUT_DIR}; \
 		fi; \
 	done
 index:
