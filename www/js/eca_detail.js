@@ -24,16 +24,16 @@ function init() {
             showRunStats();
             break;
         case "flags":
-            var gf_url = 'data/' + runid + '/channel_data/gf_flag_index.json';
-            var tw_url = 'data/' + runid + '/channel_data/tw_flag_index.json';
+            var pdst_url = 'data/' + runid + '/channel_data/pdst_flag_index.json';
+            var tslp_url = 'data/' + runid + '/channel_data/tslp_flag_index.json';
 
             $.getJSON('js/eca_constants.json', function(ecadata) {
                 eca = ecadata; 
-                $.getJSON(gf_url, function(gfData) {
-                    showFlags(gfData, "gf"); 
+                $.getJSON(pdst_url, function(pdstData) {
+                    showFlags(pdstData, "pdst"); 
                 });
-                $.getJSON(tw_url, function(twData) {
-                    showFlags(twData, "tw");
+                $.getJSON(tslp_url, function(tslpData) {
+                    showFlags(tslpData, "tslp");
                 });
             });
             break;
@@ -93,11 +93,11 @@ function showFlags(flagdata, flagtype) {
     var thead = $("<thead><tr><td>Bit</td><td>Flag</td><td># failed channels</td></tr></thead>");
     var tbody = $("<tbody/>");
     switch(flagtype) {
-        case "gf":
-            content.append($('<h3/>').append("Gain Fit"));
+        case "pdst":
+            content.append($('<h3/>').append("Pedestal"));
             break;
-        case "tw":
-            content.append($('<h3/>').append("Time Walk"));
+        case "tslp":
+            content.append($('<h3/>').append("Time Slope"));
             break;
         default:
             content.append($('<h3/>').append("Unknown flagtype, dude!"));

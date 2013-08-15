@@ -51,6 +51,17 @@ parse:
 		fi; \
 	done
 
+rootToPNG:
+	@for RUN in data/run*; do \
+		echo "==> Formatting ECA histograms $${RUN}"; \
+		OUTPUT_DIR="$${RUN}/formattedPDSThistograms"; \
+		mkdir "$${OUTPUT_DIR}"; \
+		echo "====> retrieving PDST histograms "; \
+		if [ -e $${RUN}/PDSThists_*.ratdb ]; then \
+			/usr/bin/time $(PYPY) libexec/generate_formatted_histos.py \
+				$${RUN}/PDSThists_*.ratdb; \
+		fi; \
+	done
 index:
 	@for RUN in data/run*; do \
 		echo "==> Generating .json files in $${RUN}"; \
