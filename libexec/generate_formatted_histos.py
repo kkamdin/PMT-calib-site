@@ -1,10 +1,9 @@
 #! /usr/bin/env python
 
-import ROOT
-from ROOT import TH1F, TFile, TCanvas, TDirectory, gDirectory
-import rat
 import sys
 import argparse
+from ROOT import TH1F, TFile, TCanvas, TDirectory, gDirectory
+import rat
 
 #set batch mode so no canvases pop up
 ROOT.gROOT.SetBatch()
@@ -24,17 +23,17 @@ if not (args.file):
 #open TFile where ECA histograms are hidden
 histoFile = ROOT.TFile(args.file)
 print "ROOT file to read and reformat is ", args.file
-#get iterible list (i.e can't loop over histos in TFile)
+#get iterible list (i.e can't loop over histos in TFile, need loop over keys)
 histoFile.cd()
-dirList = gDirectory.GetListOfKeys()
+keyList = gDirectory.GetListOfKeys()
 
 #loop over histograms and save each as an png file
-for key in dirList:
+for key in keyList:
 	histo = key.ReadObj()
 	#print histo.ClassName(), histo.GetName()
 	c1 = TCanvas()
 	histo.Draw()
-	mystring = args.outputDir +"/" + histo.GetName() + ".png"
-	c1.SaveAs(mystring)
-
+	mystring = args.outputDir + "/" + histo.GetName() + ".png"
+        print mystring
+#	c1.SaveAs(mystring)
 

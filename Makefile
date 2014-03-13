@@ -1,5 +1,6 @@
 .PHONY: rebuild clean jsdeps parse index generate
-PYPY = `which pypy`
+PYPY = ""
+#PYPY = `which pypy`
 
 # This Makefile will use the pypy version of python for ratdb parsing if it can.
 # If so, your copy of pypy will need access to the pyyaml module.
@@ -13,7 +14,7 @@ PYPY = `which pypy`
 # you *might* need to /usr/local/share/pypy/easy_install pip
 # /usr/local/share/pypy/pip install pyyaml
 
-rebuild: clean parse generate index jsdeps
+rebuild: clean crateview index jsdeps
 
 test:
 	@echo "==> Starting test server"
@@ -27,7 +28,7 @@ stop:
 clean:
 	@echo "==> Cleaning"
 	rm -f lib/*.pyc libexec/*.pyc data/run*/*_cache.py*
-	rm -rf data/run*/channel_data
+	rm -rf data/run*/crate_view
 
 jsdeps: lib/eca_constants.json data/index.json
 
@@ -44,33 +45,65 @@ parse:
 		echo "==> Parsing .ratdb files in $${RUN}"; \
 		OUTPUT_DIR="$${RUN}/channel_data"; \
 		mkdir "$${OUTPUT_DIR}"; \
-		echo "====> currently PDST only "; \
+		echo "====> parsing PDST... "; \
 		if [ -e $${RUN}/PDST_*.ratdb ]; then \
-			/usr/bin/time $(PYPY) libexec/parse_ratdb.py \
+			/usr/bin/time python libexec/parse_ratdb.py \
 				--pythonsrc "$${RUN}/pdst_cache.py" \
 				$${RUN}/PDST_*.ratdb; \
 		fi; \
+		echo "====> parsing TSLP... "; \
+		if [ -e $${RUN}/TSLP_*.ratdb ]; then \
+			/usr/bin/time python libexec/parse_ratdb.py \
+				--pythonsrc "$${RUN}/tslp_cache.py" \
+				$${RUN}/TSLP_*.ratdb; \
+		fi; \
 	done
+
+crateview:
+	@for RUN in data/run*; do \
+		echo "==> Making crate view histograms $${RUN}"; \
+		if [ -e $${RUN}/crate_vew ]; then \
+			rm -rf $${RUN}/crate_view; \
+		fi; \
+		OUTPUT_DIR="$${RUN}/crate_view"; \
+		mkdir "$${OUTPUT_DIR}"; \
+		if [ -e $${RUN}/PDSThists_*.root ]; then \
+		echo "====> making PDST crate view plots "; \
+			/usr/bin/time libexec/plotCrateViewPed $${RUN}/PDST_*.ratdb $${OUTPUT_DIR}; \
+		fi; \
+		if [ -e $${RUN}/TSLPhists_*.root ]; then \
+		echo "====> making TSLP crate view plots "; \
+			/usr/bin/time libexec/plotCrateViewTSlope $${RUN}/TSLP_*.ratdb $${OUTPUT_DIR}; \
+		fi; \
+	done
+
+
 
 root2png:
 	@for RUN in data/run*; do \
 		echo "==> Formatting ECA histograms $${RUN}"; \
-		if [ -e $${RUN}/formattedPDSThistograms ]; then \
-			rm -rf $${RUN}/formattedPDSThistograms; \
+		if [ -e $${RUN}/formatted_histograms ]; then \
+			rm -rf $${RUN}/formatted_histograms; \
 		fi; \
-		OUTPUT_DIR="$${RUN}/formattedPDSThistograms"; \
+		OUTPUT_DIR="$${RUN}/formatted_histograms"; \
 		mkdir "$${OUTPUT_DIR}"; \
-		echo "====> retrieving PDST histograms "; \
 		if [ -e $${RUN}/PDSThists_*.root ]; then \
+		echo "====> retrieving PDST histograms "; \
 			/usr/bin/time python libexec/generate_formatted_histos.py \
 				--file $${RUN}/PDSThists_*.root \
+				--outputDir $${OUTPUT_DIR}; \
+		fi; \
+		if [ -e $${RUN}/TSLPhists_*.root ]; then \
+		echo "====> retrieving TSLP histograms "; \
+			/usr/bin/time python libexec/generate_formatted_histos.py \
+				--file $${RUN}/TSLPhists_*.root \
 				--outputDir $${OUTPUT_DIR}; \
 		fi; \
 	done
 index:
 	@for RUN in data/run*; do \
 		echo "==> Generating .json files in $${RUN}"; \
-		OUTPUT_DIR="$${RUN}/channel_data"; \
+		OUTPUT_DIR="$${RUN}/crate_view"; \
 		echo "====> PDST"; \
 		if [ -e $${RUN}/pdst_cache.py ]; then \
 		/usr/bin/time libexec/generate_flag_index_json.py \

@@ -7,7 +7,7 @@ body {
 }
 
 table#run-list {
-	width: 800px;
+	width: 1200px;
 	border-collapse: collapse;
 	border: 0;
 	margin: 1em auto 1em auto;
@@ -164,8 +164,12 @@ div div.filterimage-wrapper {
 	border: 1px solid #eaeaea;
 	background-color: silver;
 	overflow: hidden;
-	width: 326px;
-	height: 133px;
+	/*width: 326px;
+	height: 133px;*/
+	/*width: 696px;
+	height: 472px;*/
+	width: 700px;
+	height: 475px;
 }
 
 .filterimage {

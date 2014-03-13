@@ -33,79 +33,79 @@
                 "doc": "OR of bits 1-14", 
                 "bit": 0, 
                 "type": "info", 
-                "name": "cell status PDST"
+                "name": "cell overall status"
             }, 
             {
                 "doc": "QHS ped outside limits", 
                 "bit": 1, 
                 "type": "info", 
-                "name": "cell QHS status"
+                "name": "cell QHS invalid"
             }, 
             {
                 "doc": "width > upper limit", 
                 "bit": 2, 
                 "type": "info", 
-                "name": "cell QHS width"
+                "name": "cell QHS width invalid"
             }, 
             {
                 "doc": "differebce from previous run > upper limit", 
                 "bit": 3, 
                 "type": "info", 
-                "name": "cell QHS stable"
+                "name": "cell QHS unstable"
             }, 
             {
                 "doc": "QHL ped outside limits", 
                 "bit": 4, 
                 "type": "info", 
-                "name": "cell QHL status"
+                "name": "cell QHL invalid"
             }, 
             {
                 "doc": "width > upper limit", 
                 "bit": 5, 
                 "type": "info", 
-                "name": "cell QHL width"
+                "name": "cell QHL width invalid"
             }, 
             {
                 "doc": "differebce from previous run > upper limit", 
                 "bit": 6, 
                 "type": "info", 
-                "name": "cell QHL stable"
+                "name": "cell QHL unstable"
             }, 
             {
                 "doc": "QHX ped outside limits", 
                 "bit": 7, 
                 "type": "info", 
-                "name": "cell QLX status"
+                "name": "cell QLX invalid"
             }, 
             {
                 "doc": "width > upper limit", 
                 "bit": 8, 
                 "type": "info", 
-                "name": "cell QLX width"
+                "name": "cell QLX width invalid"
             }, 
             {
                 "doc": "differebce from previous run > upper limit", 
                 "bit": 9, 
                 "type": "info", 
-                "name": "cell QLX stable"
+                "name": "cell QLX unstable"
             }, 
             {
                 "doc": "TAC ped outside limits", 
                 "bit": 10, 
                 "type": "info", 
-                "name": "cell TAC status"
+                "name": "cell TAC invalid"
             }, 
             {
                 "doc": "width > upper limit", 
                 "bit": 11, 
                 "type": "info", 
-                "name": "cell TAC width"
+                "name": "cell TAC width invalid"
             }, 
             {
                 "doc": "differebce from previous run > upper limit", 
                 "bit": 12, 
                 "type": "info", 
-                "name": "cell TAC stable"
+                "name": "cell TAC unstable"
             }, 
             {
                 "doc": "fewer than 10 events on this cell", 
@@ -117,13 +117,13 @@
                 "doc": "0 events on this cell", 
                 "bit": 14, 
                 "type": "fail", 
-                "name": "cell no events"
+                "name": "cell 0 events"
             }, 
             {
                 "doc": "OR of bits 16-27", 
                 "bit": 15, 
                 "type": "info", 
-                "name": "channel status"
+                "name": "channel overall status"
             }, 
             {
                 "doc": "", 
@@ -141,43 +141,43 @@
                 "doc": "any QHS values outside tolerance", 
                 "bit": 18, 
                 "type": "info", 
-                "name": "channel QHS status"
+                "name": "channel QHS value/width invalid"
             }, 
             {
                 "doc": "any QHL values outside tolerance", 
                 "bit": 19, 
                 "type": "info", 
-                "name": "channel QHL status"
+                "name": "channel QHL value/width invalid"
             }, 
             {
                 "doc": "any QLX values outside tolerance", 
                 "bit": 20, 
                 "type": "info", 
-                "name": "channel QLX status"
+                "name": "channel QLX value/width invalid"
             }, 
             {
                 "doc": "any TAC values outside tolerance", 
                 "bit": 21, 
                 "type": "info", 
-                "name": "channel TAC status"
+                "name": "channel TAC value/width invalid"
             }, 
             {
                 "doc": "any ped measures outside tolerance", 
                 "bit": 22, 
                 "type": "info", 
-                "name": "channel ped status"
+                "name": "channel any ped bad"
             }, 
             {
                 "doc": "any width measures outside tolerance", 
                 "bit": 23, 
                 "type": "info", 
-                "name": "channel width status"
+                "name": "channel any width bad"
             }, 
             {
                 "doc": "any difference measures outside tolerance", 
                 "bit": 24, 
                 "type": "info", 
-                "name": "channel stability status"
+                "name": "channel any stability bad"
             }, 
             {
                 "doc": "", 
@@ -195,7 +195,7 @@
                 "doc": "0 events on this channel", 
                 "bit": 27, 
                 "type": "info", 
-                "name": "channel no events"
+                "name": "channel 0 events"
             }, 
             {
                 "doc": "", 
@@ -227,145 +227,145 @@
                 "doc": "OR of bits 1-12", 
                 "bit": 0, 
                 "type": "info", 
-                "name": "cell status TSLP"
+                "name": "cell overall status"
             }, 
             {
                 "doc": "0 events on this cell", 
                 "bit": 1, 
                 "type": "fail", 
-                "name": "cell no events"
+                "name": "cell 0 events"
             }, 
             {
                 "doc": "too few good points used in cubic fit", 
                 "bit": 2, 
                 "type": "info", 
-                "name": "cell bad data"
+                "name": "cell too few points for fit"
             }, 
             {
                 "doc": "too many suspicious points", 
                 "bit": 3, 
                 "type": "info", 
-                "name": "cell weird data"
+                "name": "cell too many suspicious points"
             }, 
             {
                 "doc": "x^3 coeff. outside limits", 
                 "bit": 4, 
                 "type": "info", 
-                "name": "cell x3 status"
+                "name": "cell x3 param bad"
             }, 
             {
                 "doc": "x^3 coeff. outside range of previous run", 
                 "bit": 5, 
                 "type": "info", 
-                "name": "cell x3 stable"
+                "name": "cell x3 param unstable"
             }, 
             {
                 "doc": "x^2 coeff. outside limits", 
                 "bit": 6, 
                 "type": "info", 
-                "name": "cell x2 status"
+                "name": "cell x2 param bad"
             }, 
             {
                 "doc": "x^2 coeff. outside range of previous run", 
                 "bit": 7, 
                 "type": "info", 
-                "name": "cell x2 stable"
+                "name": "cell x2 param unstable"
             }, 
             {
                 "doc": "x^3 coeff. outside limits", 
                 "bit": 8, 
                 "type": "info", 
-                "name": "cell x status"
+                "name": "cell x param bad"
             }, 
             {
                 "doc": "x^3 coeff. outside range of previous run", 
                 "bit": 9, 
                 "type": "info", 
-                "name": "cell x stable"
+                "name": "cell x param unstable"
             }, 
             {
                 "doc": "Too many points with width outside tolerance", 
                 "bit": 10, 
                 "type": "info", 
-                "name": "cell width status"
+                "name": "cell too many points bad width"
             }, 
             {
                 "doc": "too many points with too few events", 
                 "bit": 11, 
                 "type": "info", 
-                "name": "cell insufficent events"
+                "name": "cell too many points w too few events"
             }, 
             {
-                "doc": "", 
+                "doc": "cell has 1 or more points at 4095", 
                 "bit": 12, 
                 "type": "info", 
-                "name": "spare"
+                "name": "cell railed"
             }, 
             {
                 "doc": "OR of bits 16-27", 
                 "bit": 13, 
                 "type": "info", 
-                "name": "channel status"
+                "name": "channel overall status"
             }, 
             {
                 "doc": "0 events on this channel", 
                 "bit": 14, 
                 "type": "fail", 
-                "name": "channel no events"
+                "name": "channel 0 events"
             }, 
             {
-                "doc": "too few good points used in cubic fit", 
+                "doc": "any cells w too few good points used in cubic fit", 
                 "bit": 15, 
                 "type": "info", 
-                "name": "channel bad data"
+                "name": "channel too few points for fit"
             }, 
             {
-                "doc": "too many suspicious points", 
+                "doc": "any cells w too many suspicious points", 
                 "bit": 16, 
                 "type": "info", 
-                "name": "channel weird data"
+                "name": "channel too many suspicious points"
             }, 
             {
                 "doc": "x^3 coeff. outside limits and/or range of previous run", 
                 "bit": 17, 
                 "type": "info", 
-                "name": "channel x3 status"
+                "name": "channel x3 param bad or unstable"
             }, 
             {
                 "doc": "x^2 coeff. outside limits and/or range of previous run", 
                 "bit": 18, 
                 "type": "info", 
-                "name": "channel x2 status"
+                "name": "channel x2 param bad or unstable"
             }, 
             {
                 "doc": "x^3 coeff. outside limits and/or range of previous run", 
                 "bit": 19, 
                 "type": "info", 
-                "name": "channel x status"
+                "name": "channel x param bad or unstable"
             }, 
             {
                 "doc": "any fit parameters outside limits", 
                 "bit": 20, 
                 "type": "info", 
-                "name": "channel fit status"
+                "name": "channel any fit params bad"
             }, 
             {
                 "doc": "any fit parameters outside range of previous run", 
                 "bit": 21, 
                 "type": "info", 
-                "name": "channel fit stable"
+                "name": "channel any fit unstable"
             }, 
             {
                 "doc": "too many points with width outside tolderance", 
                 "bit": 22, 
                 "type": "info", 
-                "name": "channel width status"
+                "name": "channel too many bad widths"
             }, 
             {
                 "doc": "too many points with two few events", 
                 "bit": 23, 
                 "type": "info", 
-                "name": "channel insufficient events"
+                "name": "channel too many points w few events"
             }, 
             {
                 "doc": "", 
@@ -389,7 +389,7 @@
                 "doc": "", 
                 "bit": 27, 
                 "type": "info", 
-                "name": "spare"
+                "name": "channel any railed"
             }, 
             {
                 "doc": "", 

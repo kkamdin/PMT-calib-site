@@ -166,17 +166,19 @@ function drawFilterOptions(rowSelector) {
                     return event.preventDefault();
                 }
 
-                var flagNumberString = (String(idx).length == 1) ? "0" + idx : idx;
+                var flagNumberString = (String(idx).length == 1) ?'0'+ idx : idx;
 
-                if (flagNumberString == "00") {
-                    flagImageFilename = runMode + "-allflags.bmp";
-                } else {
-                    flagImageFilename = runMode + "-flag-" + flagNumberString + ".bmp";
-                }
+               // if (flagNumberString == "00") {
+                 //   flagImageFilename = runMode + "-allflags.bmp";
+               // } else {
+                 //   flagImageFilename = runMode + "-flag-" + flagNumberString + ".bmp";
+                //}
+                    flagImageFilename = runMode + "-flag-" + flagNumberString + ".png";
 
                 var filterimage = $("<img />", {
                     "class": "filterimage",
-                    src: "data/" + runName + '/channel_data/' + flagImageFilename
+                    src: "data/" + runName + '/crate_view/' + flagImageFilename
+//                    src: "data/run6665/crate_view/pdst-flag-00.png"
                 });
 
                 $(rowSelector + ' .filterimage-wrapper').empty().append(filterimage);
