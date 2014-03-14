@@ -4,7 +4,7 @@
 
 Access to the site requires a modern web browser with javascript enabled. On the server site, generating new content requires:
 
-- Python 2.6+, RAT, and ROOT
+- Python 2.6+, RAT, and ROOT (apparently generate_formatted_histos.py needs root 5.34.17, RAT currently uses 5.43.11)
 
 ## Adding New Run Data
 
